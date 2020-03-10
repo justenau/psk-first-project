@@ -1,5 +1,8 @@
 package lt.vu.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -11,6 +14,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "Artist.findAll", query = "select a from Artist as a")
 })
+@Getter @Setter
 public class Artist implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,22 +29,6 @@ public class Artist implements Serializable {
 
     public Artist(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     @Override
