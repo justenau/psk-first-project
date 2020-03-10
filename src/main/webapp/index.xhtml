@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Artists:</h2>
+    <ol>
+        <ui:repeat value="#{artists.allArtists}" var="artist">
+            <li>#{artist.name}</li>
+        </ui:repeat>
+    </ol>
+</h:body>
+</html>
