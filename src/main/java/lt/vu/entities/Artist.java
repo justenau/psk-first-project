@@ -6,6 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -24,11 +25,16 @@ public class Artist implements Serializable {
     @Column(name = "NAME")
     private String name;
 
+    @Size(max=30)
+    @Column(name = "ORIGIN")
+    private String origin;
+
     public Artist() {
     }
 
-    public Artist(String name) {
+    public Artist(String name, String origin) {
         this.name = name;
+        this.origin = origin;
     }
 
     @Override

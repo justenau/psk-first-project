@@ -1,11 +1,10 @@
-package lt.vu.persistance;
+package lt.vu.persistence;
 
 import lt.vu.entities.Artist;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.lang.reflect.Array;
 import java.util.List;
 
 @ApplicationScoped

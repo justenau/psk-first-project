@@ -8,16 +8,16 @@
 <h:body>
     <h2>Albums:</h2>
     <ol>
-        <ui:repeat value="#{albums.allAlbums}" var="album">
+        <ui:repeat value="#{albumsMyBatis.allAlbums}" var="album">
             <li><h:link value="#{album.title}" outcome="songs?albumId=#{album.id}"/></li>
         </ui:repeat>
     </ol>
     <h:form>
         <h5>Title:</h5>
-        <h:inputText value="#{albums.albumToCreate.title}" required="true" />
+        <h:inputText value="#{albumsMyBatis.albumToCreate.title}" required="true" />
         <br/>
-        <h:commandButton value="Add new album" action="#{albums.createAlbum}"/>
+        <h:commandButton value="Add new album" action="#{albumsMyBatis.createAlbum}"/>
     </h:form>
-    <h:link outcome="myBatis/albums" value="MyBatis implementation"/>
+    <h:link value="Back to index" outcome="/index"/>
 </h:body>
 </html>

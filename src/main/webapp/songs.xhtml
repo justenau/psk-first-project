@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head/>
+<h:body>
+    <h2>Songs in #{songsForAlbum.album.title} album:</h2>
+    <ol>
+        <ui:repeat value="#{songsForAlbum.album.songs}" var="song">
+            <li>#{song.title}</li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText a:placeholder="Title" value="#{songsForAlbum.songToCreate.title}" required="true" />
+        <h:commandButton value="Add song to the album" action="#{songsForAlbum.createSong}" >
+            <f:param name="albumId" value="#{songsForAlbum.album.id}" />
+        </h:commandButton>
+    </h:form>
+    <h:link outcome="index" value="Back to albums"/>
+</h:body>
+</html>
