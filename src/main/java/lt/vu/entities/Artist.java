@@ -1,53 +1,37 @@
 package lt.vu.entities;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
-
 
 @Entity
-@Table(name="ARTIST")
 @NamedQueries({
         @NamedQuery(name = "Artist.findAll", query = "select a from Artist as a")
 })
-@Getter @Setter
+@Table(name = "ARTIST")
+@Getter
+@Setter
+@EqualsAndHashCode(of = {"id"})
 public class Artist implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    @Size(max = 60)
-    @Column(name = "NAME")
-    private String name;
-
-    @Size(max=30)
-    @Column(name = "ORIGIN")
-    private String origin;
-
     public Artist() {
     }
 
-    public Artist(String name, String origin) {
-        this.name = name;
-        this.origin = origin;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Getter
+    @Setter
+    private Integer id;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Artist artist = (Artist) o;
-        return Objects.equals(id, artist.id) &&
-                Objects.equals(name, artist.name);
-    }
+    @OneToMany(mappedBy = "artist")
+    @Getter
+    @Setter
+    private List<AlbumContributor> albums;
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
+    @Getter
+    @Setter
+    private String name;
 }

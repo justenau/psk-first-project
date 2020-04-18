@@ -9,7 +9,7 @@
     <h2>Albums:</h2>
     <ol>
         <ui:repeat value="#{albumsMyBatis.allAlbums}" var="album">
-            <li><h:link value="#{album.title}" outcome="songs?albumId=#{album.id}"/></li>
+            <li><h:link value="#{album.title}" outcome="/albumDetails?albumId=#{album.id}"/></li>
         </ui:repeat>
     </ol>
     <h:form>

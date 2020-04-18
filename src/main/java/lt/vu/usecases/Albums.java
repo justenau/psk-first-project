@@ -31,7 +31,7 @@ public class Albums {
     @Transactional
     public String createAlbum(){
         this.albumsDAO.persist(albumToCreate);
-        return "index?faces-redirect=true";
+        return "albums?faces-redirect=true";
     }
 
     private void loadAllAlbums(){

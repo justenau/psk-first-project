@@ -1,5 +1,7 @@
 package lt.vu.usecases;
 
+import lombok.Getter;
+import lombok.Setter;
 import lt.vu.entities.Artist;
 import lt.vu.persistence.ArtistsDAO;
 
@@ -15,32 +17,25 @@ public class Artists implements Serializable {
     @Inject
     private ArtistsDAO artistsDAO;
 
+    @Getter
+    @Setter
     private Artist artistToCreate = new Artist();
-    private List<Artist> allArtists;
+
+    @Getter
+    private List<Artist> artists;
+
     @PostConstruct
-    public void init(){
+    public void init() {
         loadArtists();
     }
 
-    public void loadArtists() {
-        this.allArtists = artistsDAO.loadAll();
-    }
-
-    public List<Artist> getAllArtists(){
-        return allArtists;
-    }
-
     @Transactional
-    public String createArtist(){
+    public String createArtist() {
         this.artistsDAO.persist(artistToCreate);
-        return "success";
+        return "artists?faces-redirect=true";
     }
 
-    public Artist getArtistToCreate() {
-        return artistToCreate;
-    }
-
-    public void setArtistToCreate(Artist artistToCreate) {
-        this.artistToCreate = artistToCreate;
+    private void loadArtists() {
+        this.artists = artistsDAO.loadAll();
     }
 }

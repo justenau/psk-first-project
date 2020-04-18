@@ -3,13 +3,14 @@ package lt.vu.persistence;
 import lt.vu.entities.Artist;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @ApplicationScoped
 public class ArtistsDAO {
-    @PersistenceContext
+    @Inject
     private EntityManager em;
 
     public List<Artist> loadAll() {
@@ -23,4 +24,7 @@ public class ArtistsDAO {
     public void persist(Artist artist){
         this.em.persist(artist);
     }
+
+    public Artist findOne(Integer id) { return em.find(Artist.class, id); }
+
 }
