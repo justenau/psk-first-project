@@ -6,6 +6,8 @@
     <typeAliases>
         <typeAlias type="lt.vu.mybatis.model.Album" alias="Album"/>
         <typeAlias type="lt.vu.mybatis.model.Song" alias="Song"/>
+        <typeAlias type="lt.vu.mybatis.model.Artist" alias="Artist"/>
+        <typeAlias type="lt.vu.mybatis.model.AlbumContributor" alias="AlbumContributor"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -18,5 +20,7 @@
     <mappers>
         <mapper resource="mybatis.xml/AlbumMapper.xml"/>
         <mapper resource="mybatis.xml/SongMapper.xml"/>
+        <mapper resource="mybatis.xml/ArtistMapper.xml"/>
+        <mapper resource="mybatis.xml/AlbumContributorMapper.xml"/>
     </mappers>
 </configuration>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head/>
+<h:body>
+    <h2>#{albumDetailsMyBatis.album.title}</h2>
+    <h3>Artists:</h3>
+    <ol>
+        <ui:repeat value="#{albumDetailsMyBatis.album.artists}" var="artist">
+            <li>#{artist.artistId} (#{artist.role})</li>
+        </ui:repeat>
+    </ol>
+    <br/>
+    <h:form>
+        <h:inputText a:placeholder="Artist id" value="#{albumDetailsMyBatis.artistId}" required="true"/>
+        <br/>
+        <h:inputText a:placeholder="Artist role" value="#{albumDetailsMyBatis.artistRole}" required="true"/>
+        <br/>
+        <h:commandButton value="Add contributed artist" action="#{albumDetailsMyBatis.addArtistContributorForAlbum}">
+            <f:param name="albumId" value="#{albumDetailsMyBatis.album.id}"/>
+        </h:commandButton>
+    </h:form>
+    <br/>
+    <h3>Songs:</h3>
+    <ol>
+        <ui:repeat value="#{albumDetailsMyBatis.album.songs}" var="song">
+            <li>#{song.title}</li>
+        </ui:repeat>
+    </ol>
+    <br/>
+    <h:form>
+        <h:inputText a:placeholder="Title" value="#{albumDetailsMyBatis.songToCreate.title}" required="true" />
+        <h:commandButton value="Add song to the album" action="#{albumDetailsMyBatis.addSong}" >
+            <f:param name="albumId" value="#{albumDetailsMyBatis.album.id}" />
+        </h:commandButton>
+    </h:form>
+    <br/>
+    <h:link outcome="artists" value="Find artists in full list"/>
+    <br/>
+    <br/>
+    <h:link outcome="albums" value="Back to albums"/>
+</h:body>
+</html>

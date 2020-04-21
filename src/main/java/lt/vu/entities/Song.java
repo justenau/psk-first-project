@@ -1,5 +1,6 @@
 package lt.vu.entities;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.util.Objects;
 @Entity
 @Table(name="SONG")
 @Getter @Setter
+@EqualsAndHashCode(of={"title"})
 public class Song implements Serializable {
 
     @Id
@@ -23,19 +25,5 @@ public class Song implements Serializable {
     private Album album;
 
     public Song(){}
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Song song = (Song) o;
-//        return Objects.equals(id, song.id) &&
-//                Objects.equals(title, song.title);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, title);
-//    }
 
 }

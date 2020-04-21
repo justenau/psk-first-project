@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head/>
+<h:body>
+    <h2>#{artistDetailsMyBatis.artist.name}</h2>
+    <h3>Album contributions:</h3>
+    <ol>
+        <ui:repeat value="#{artistDetailsMyBatis.artist.albums}" var="album">
+            <li>#{album.album.title} (#{album.role})</li>
+        </ui:repeat>
+    </ol>
+    <br/>
+    <h:form>
+        <h:inputText a:placeholder="Album id" value="#{artistDetailsMyBatis.albumId}" required="true"/>
+        <br/>
+        <h:inputText a:placeholder="Artist role" value="#{artistDetailsMyBatis.artistRole}" required="true"/>
+        <br/>
+        <h:commandButton value="Add contributed album" action="#{artistDetailsMyBatis.addArtistContributorForAlbum}">
+            <f:param name="artistId" value="#{artistDetailsMyBatis.artist.id}"/>
+        </h:commandButton>
+    </h:form>
+    <h:link outcome="albums" value="Find albums in full list"/>
+    <br/>
+    <br/>
+    <h:link outcome="artists" value="Back to artists"/>
+</h:body>
+</html>

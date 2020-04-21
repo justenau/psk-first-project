@@ -1,5 +1,6 @@
 package lt.vu.entities;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "Album.findAll", query = "select a from Album as a")
 })
+@EqualsAndHashCode(of={"id"})
 public class Album implements Serializable {
 
     @Id
@@ -33,18 +35,4 @@ public class Album implements Serializable {
     private List<AlbumContributor> artists;
 
     public Album(){}
-
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Album album = (Album) o;
-//        return Objects.equals(id, album.id) &&
-//                Objects.equals(title, album.title);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, title);
-//    }
 }

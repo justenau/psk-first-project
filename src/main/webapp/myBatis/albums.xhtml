@@ -9,7 +9,7 @@
     <h2>Albums:</h2>
     <ol>
         <ui:repeat value="#{albumsMyBatis.allAlbums}" var="album">
-            <li><h:link value="#{album.title}" outcome="/albumDetails?albumId=#{album.id}"/></li>
+            <li><h:link value="#{album.title}" outcome="albumDetails?albumId=#{album.id}"/></li>
         </ui:repeat>
     </ol>
     <h:form>
@@ -18,6 +18,6 @@
         <br/>
         <h:commandButton value="Add new album" action="#{albumsMyBatis.createAlbum}"/>
     </h:form>
-    <h:link value="Back to index" outcome="/index"/>
+    <h:link value="Back to index" outcome="indexv2"/>
 </h:body>
 </html>
