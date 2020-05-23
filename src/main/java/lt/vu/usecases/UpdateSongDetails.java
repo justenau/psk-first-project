@@ -3,6 +3,7 @@ package lt.vu.usecases;
 import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.Song;
+import lt.vu.interceptors.LoggedInvocation;
 import lt.vu.persistence.AlbumsDAO;
 import lt.vu.persistence.SongsDAO;
 
@@ -37,6 +38,7 @@ public class UpdateSongDetails implements Serializable {
     }
 
     @Transactional
+    @LoggedInvocation
     public String updateSongMonthlyListeners() {
         try{
             songsDAO.update(this.song);
