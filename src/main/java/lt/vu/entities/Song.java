@@ -20,6 +20,13 @@ public class Song implements Serializable {
 
     private String title;
 
+    @Column(name = "MONTHLY_LISTENERS")
+    private Integer monthlyListeners;
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
+
     @ManyToOne
     @JoinColumn(name="ALBUM_ID")
     private Album album;

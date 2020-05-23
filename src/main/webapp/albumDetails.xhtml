@@ -28,7 +28,7 @@
     <h3>Songs:</h3>
     <ol>
         <ui:repeat value="#{albumDetails.album.songs}" var="song">
-            <li>#{song.title}</li>
+            <li><h:link value="#{song.title} (#{song.monthlyListeners} monthly listeners)" outcome="songDetails?songId=#{song.id}"/></li>
         </ui:repeat>
     </ol>
     <br/>

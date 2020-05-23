@@ -17,4 +17,8 @@ public class SongsDAO {
     }
 
     public Song findOne(Integer id) { return em.find(Song.class, id); }
+
+    public Song update(Song song){
+        return em.merge(song);
+    }
 }

@@ -13,16 +13,19 @@ import lt.vu.persistence.SongsDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.persistence.OptimisticLockException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Map;
 
 @Model
-@RequestScoped
+@ViewScoped
 public class AlbumDetails implements Serializable {
     @Inject
     private AlbumsDAO albumsDAO;
@@ -66,7 +69,6 @@ public class AlbumDetails implements Serializable {
         this.album = albumsDAO.findOne(albumId);
     }
 
-
     @Transactional
     public String addArtistContributorForAlbum() {
         Artist artist = artistsDAO.findOne(Integer.parseInt(artistId));
@@ -84,6 +86,7 @@ public class AlbumDetails implements Serializable {
     @Transactional
     public String addSong() {
         songToCreate.setAlbum(this.album);
+        songToCreate.setMonthlyListeners(0);
         songsDAO.persist(songToCreate);
         return "/albumDetails?faces-redirect=true&albumId=" + this.album.getId();
     }
