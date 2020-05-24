@@ -6,10 +6,7 @@ import lt.vu.entities.Album;
 import lt.vu.entities.AlbumContributor;
 import lt.vu.entities.Artist;
 import lt.vu.entities.Song;
-import lt.vu.persistence.AlbumContributorsDAO;
-import lt.vu.persistence.AlbumsDAO;
-import lt.vu.persistence.ArtistsDAO;
-import lt.vu.persistence.SongsDAO;
+import lt.vu.persistence.*;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;

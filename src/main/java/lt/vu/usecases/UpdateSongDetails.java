@@ -5,6 +5,7 @@ import lombok.Setter;
 import lt.vu.entities.Song;
 import lt.vu.interceptors.LoggedInvocation;
 import lt.vu.persistence.AlbumsDAO;
+import lt.vu.persistence.ISongsDAO;
 import lt.vu.persistence.SongsDAO;
 
 

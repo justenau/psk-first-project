@@ -14,5 +14,8 @@
 <!--     <alternatives>-->
 <!--        <class>lt.vu.services.AlternativeMonthlyListenersCalculator</class>-->
 <!--    </alternatives>-->
+    <decorators>
+        <class>lt.vu.decorators.SongsDAODecorator</class>
+    </decorators>
 
 </beans>

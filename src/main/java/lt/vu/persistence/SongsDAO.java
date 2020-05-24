@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 @ApplicationScoped
-public class SongsDAO {
+public class SongsDAO implements ISongsDAO{
     @Inject
     private EntityManager em;
 
