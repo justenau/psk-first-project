@@ -27,4 +27,8 @@ public class ArtistsDAO {
 
     public Artist findOne(Integer id) { return em.find(Artist.class, id); }
 
+    public Artist update(Artist artist){
+        return em.merge(artist);
+    }
+
 }
