@@ -4,6 +4,7 @@ import org.apache.deltaspike.core.api.future.Futureable;
 
 import javax.ejb.AsyncResult;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.inject.Specializes;
 import java.io.Serializable;
 import java.util.Random;
 import java.util.concurrent.Future;
@@ -11,11 +12,12 @@ import java.util.concurrent.Future;
 import static java.lang.Math.abs;
 
 @ApplicationScoped
-public class MonthlyListenersCalculator implements Serializable, IMonthlyListenersCalculator {
+@Specializes
+public class ManyUsersMonthlyListenersCalculator extends  MonthlyListenersCalculator implements Serializable {
+
+    @Override
     @Futureable
     public Future<Integer> calculateMonthlyListeners() {
-        System.out.println("Using default implementation of MonthlyListenersCalculator");
-
         /* Simulate calculation */
         try {
             Thread.sleep(4000);
@@ -23,7 +25,7 @@ public class MonthlyListenersCalculator implements Serializable, IMonthlyListene
             System.out.println(e.getMessage());
         }
 
-        final int calculatedMonthlyListeners = abs(new Random().nextInt(100));
+        final int calculatedMonthlyListeners = abs(new Random().nextInt(1000000));
         return new AsyncResult<>(calculatedMonthlyListeners);
     }
 }

@@ -12,20 +12,20 @@ import java.util.concurrent.Future;
 import static java.lang.Math.abs;
 
 @ApplicationScoped
-    @Alternative
-    public class AlternativeMonthlyListenersCalculator implements Serializable, IMonthlyListenersCalculator {
-        @Futureable
-        public Future<Integer> calculateMonthlyListeners() {
-            System.out.println("Using alternative implementation of MonthlyListenersCalculator");
+@Alternative
+public class AlternativeMonthlyListenersCalculator implements Serializable, IMonthlyListenersCalculator {
+    @Futureable
+    public Future<Integer> calculateMonthlyListeners() {
+        System.out.println("Using alternative implementation of MonthlyListenersCalculator");
 
-            /*Simulate calculation*/
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                System.out.println(e.getMessage());
-            }
-
-            final int monthlyListeners = abs(UUID.randomUUID().hashCode());
-            return new AsyncResult<>(monthlyListeners);
+        /*Simulate calculation*/
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
         }
+
+        final int monthlyListeners = abs(UUID.randomUUID().hashCode());
+        return new AsyncResult<>(monthlyListeners);
     }
+}
