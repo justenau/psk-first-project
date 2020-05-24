@@ -9,20 +9,23 @@ import java.io.Serializable;
 import java.util.UUID;
 import java.util.concurrent.Future;
 
-    @ApplicationScoped
-    @Alternative
-    public class AlternativeMonthlyListenersGenerator implements Serializable, IMonthlyListenersGenerator {
-        @Futureable
-        public Future<Integer> generateMonthlyListeners() {
-            System.out.println("Using alternative implementation of MonthlyListenersGenerator");
+import static java.lang.Math.abs;
 
+@ApplicationScoped
+    @Alternative
+    public class AlternativeMonthlyListenersCalculator implements Serializable, IMonthlyListenersCalculator {
+        @Futureable
+        public Future<Integer> calculateMonthlyListeners() {
+            System.out.println("Using alternative implementation of MonthlyListenersCalculator");
+
+            /*Simulate calculation*/
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }
 
-            final int monthlyListeners = UUID.randomUUID().hashCode();
+            final int monthlyListeners = abs(UUID.randomUUID().hashCode());
             return new AsyncResult<>(monthlyListeners);
         }
     }

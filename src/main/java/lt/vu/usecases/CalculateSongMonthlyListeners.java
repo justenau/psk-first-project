@@ -1,8 +1,7 @@
 package lt.vu.usecases;
 
-import debr.interceptors.LoggedInvocation;
-import debr.services.INickNameGenerator;
-import lt.vu.services.IMonthlyListenersGenerator;
+import lt.vu.interceptors.LoggedInvocation;
+import lt.vu.services.IMonthlyListenersCalculator;
 
 import javax.enterprise.context.SessionScoped;
 import javax.enterprise.inject.Model;
@@ -15,31 +14,31 @@ import java.util.concurrent.Future;
 
 @Model
 @SessionScoped
-public class GenerateSongMonthlyListeners implements Serializable {
+public class CalculateSongMonthlyListeners implements Serializable {
     @Inject
-    IMonthlyListenersGenerator monthlyListenersGenerator;
+    IMonthlyListenersCalculator monthlyListenersCalculator;
 
-    private Future<Integer> monthlyListenersGeneratorTask = null;
+    private Future<Integer> monthlyListenersCalculationTask = null;
 
     @LoggedInvocation
-    public String generateNickName() {
+    public String calculateMonthlyListeners() {
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        monthlyListenersGeneratorTask = monthlyListenersGenerator.generateNickName();
+        monthlyListenersCalculationTask = monthlyListenersCalculator.calculateMonthlyListeners();
 
-        return  "/playerDetails.xhtml?faces-redirect=true&playerId=" + requestParameters.get("playerId");
+        return  "/songDetails.xhtml?faces-redirect=true&songId=" + requestParameters.get("songId");
     }
 
-    public boolean isNickNameGenerationRunning() {
-        return monthlyListenersGeneratorTask != null && !monthlyListenersGeneratorTask.isDone();
+    public boolean isMonthlyListenersCalculationRunning() {
+        return monthlyListenersCalculationTask != null && !monthlyListenersCalculationTask.isDone();
     }
 
-    public String getNickNameGenerationStatus() throws ExecutionException, InterruptedException {
-        if (monthlyListenersGeneratorTask == null) {
+    public String getMonthlyListenersCalculationStatus() throws ExecutionException, InterruptedException {
+        if (monthlyListenersCalculationTask == null) {
             return null;
-        } else if (isNickNameGenerationRunning()) {
-            return "Nick name generation in progress";
+        } else if (isMonthlyListenersCalculationRunning()) {
+            return "Monthly listeners calculation in progress";
         }
-        return "Suggested nick name: " + monthlyListenersGeneratorTask.get();
+        return "Calculated monthly listeners " + monthlyListenersCalculationTask.get();
     }
 }

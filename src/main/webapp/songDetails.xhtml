@@ -17,6 +17,16 @@
         <br/>
         <h:outputText style="color: red" value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
     </h:form>
+    <br/>
+    <h:form>
+        <h:commandButton value="Month has changed? Calculate monthly listeners!"
+                         disabled="#{calculateSongMonthlyListeners.monthlyListenersCalculationRunning}"
+                         action="#{calculateSongMonthlyListeners.calculateMonthlyListeners}">
+            <f:param name="songId" value="#{updateSongDetails.song.id}"/>
+        </h:commandButton>
+    </h:form>
+    <h:outputText value="#{calculateSongMonthlyListeners.getMonthlyListenersCalculationStatus()}"/>
+    <br/>
     <h:link outcome="/albumDetails?albumId=#{updateSongDetails.song.album.id}" value="Back to album"/><br/>
     <h:link outcome="index" value="Back to home page"/>
 </h:body>
