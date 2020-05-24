@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import lt.vu.entities.Song;
 import lt.vu.interceptors.LoggedInvocation;
-import lt.vu.persistence.AlbumsDAO;
-import lt.vu.persistence.ISongsDAO;
 import lt.vu.persistence.SongsDAO;
 
 
@@ -44,10 +42,15 @@ public class UpdateSongDetails implements Serializable {
         try{
             songsDAO.update(this.song);
         } catch (OptimisticLockException e) {
-            return "/songDetails.xhtml?faces-redirect=true&songId=" + this.song.getId() + "&error=optimistic-lock-exception";
-        } catch (Exception e){
-            System.out.println("ERROR:" + e.getMessage());
+            return handleOptimisticLockException();
         }
         return "/albumDetails?faces-redirect=true&albumId=" + this.song.getAlbum().getId();
+    }
+
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    @LoggedInvocation
+    public String handleOptimisticLockException() {
+        this.song = songsDAO.findOne(this.song.getId());
+        return "/songDetails.xhtml?faces-redirect=true&songId=" + this.song.getId() + "&error=optimistic-lock-exception";
     }
 }
